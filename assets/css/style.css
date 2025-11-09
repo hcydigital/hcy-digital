@@ -1,0 +1,46 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  color: #222;
+  background: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: #000;
+}
+
+header .logo {
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 120px 20px;
+  background: linear-gradient(135deg, #000, #1f2937);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: #2563eb;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+}
