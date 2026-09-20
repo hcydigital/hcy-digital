@@ -160,4 +160,66 @@
       window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text, "_blank", "noopener,noreferrer");
     });
   }
+  // 5. Branding portfolio popup: tapping a branding card shows its full
+  // branding image in a modal, closable via the X button, backdrop click,
+  // or Escape.
+  var modal = document.getElementById("portfolio-modal");
+  var modalImage = document.getElementById("portfolio-modal-image");
+  var modalClose = document.getElementById("portfolio-modal-close");
+
+  function openPortfolioModal(src, alt) {
+    if (!modal || !modalImage) return;
+    modalImage.src = src;
+    modalImage.alt = alt || "";
+    modal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closePortfolioModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  document.querySelectorAll("[data-popup-image]").forEach(function (card) {
+    card.addEventListener("click", function () {
+      openPortfolioModal(card.getAttribute("data-popup-image"), card.getAttribute("data-popup-alt"));
+    });
+  });
+
+  if (modalClose) modalClose.addEventListener("click", closePortfolioModal);
+  if (modal) {
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) closePortfolioModal();
+    });
+  }
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closePortfolioModal();
+  });
+
+  // 6. Reviews carousel: pause the auto-scroll while the user is touching,
+  // holding, or swiping the strip, and resume a moment after they let go.
+  var reviewsTrack = document.getElementById("reviews-marquee-track");
+  if (reviewsTrack) {
+    var resumeTimer = null;
+
+    function pauseReviewsScroll() {
+      reviewsTrack.classList.add("is-paused");
+      if (resumeTimer) {
+        clearTimeout(resumeTimer);
+        resumeTimer = null;
+      }
+    }
+
+    function scheduleResumeReviewsScroll() {
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () {
+        reviewsTrack.classList.remove("is-paused");
+      }, 1500);
+    }
+
+    reviewsTrack.addEventListener("touchstart", pauseReviewsScroll, { passive: true });
+    reviewsTrack.addEventListener("touchend", scheduleResumeReviewsScroll, { passive: true });
+    reviewsTrack.addEventListener("touchcancel", scheduleResumeReviewsScroll, { passive: true });
+  }
 })();

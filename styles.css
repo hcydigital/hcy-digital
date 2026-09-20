@@ -97,8 +97,49 @@ select.input{
   display:flex;
   gap:1rem;
   width:max-content;
-  padding:0 4vw;
   animation:reviews-marquee 32s linear infinite;
+}
+.reviews-marquee-track.is-paused{
+  animation-play-state:paused;
+}
+
+/* Branding project popup modal */
+.portfolio-modal{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  background:rgba(0,0,0,0.78);
+  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);
+}
+.portfolio-modal.is-open{
+  display:flex;
+}
+.portfolio-modal img{
+  max-width:min(720px,92vw);
+  max-height:85vh;
+  width:auto;
+  height:auto;
+  border-radius:1.25rem;
+  object-fit:contain;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,0.7);
+}
+.portfolio-modal-close{
+  position:fixed;
+  top:1.5rem;
+  right:1.5rem;
+  z-index:61;
+  display:grid;
+  place-items:center;
+  width:2.75rem;
+  height:2.75rem;
+  border-radius:9999px;
+  color:var(--foreground);
+  cursor:pointer;
 }
 .review-card-mobile{
   flex:0 0 66vw;
