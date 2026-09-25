@@ -128,6 +128,11 @@ select.input{
   object-fit:contain;
   box-shadow:0 30px 80px -20px rgba(0,0,0,0.7);
 }
+@media (max-width:749px){
+  .portfolio-modal img{
+    border-radius: 0.6rem;
+  }
+}
 .portfolio-modal-close{
   position:fixed;
   top:1.5rem;
