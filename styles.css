@@ -103,6 +103,61 @@ select.input{
   animation-play-state:paused;
 }
 
+/* Reviews: carousel on mobile, masonry-style columns on desktop.
+   Using CSS multi-column (not the newer `grid-template-rows: masonry`)
+   because native CSS masonry still isn't supported in Chrome or Safari as
+   of this build — columns give the same "cards sized to their own
+   content" look with full cross-browser support today. */
+.reviews-carousel-wrap{
+  display:block;
+}
+.reviews-grid{
+  display:none;
+}
+@media (min-width:640px){
+  .reviews-carousel-wrap{ display:none; }
+  .reviews-grid{
+    display:block;
+    columns:2;
+    column-gap:1.25rem;
+  }
+}
+@media (min-width:1024px){
+  .reviews-grid{ columns:4; }
+}
+.reviews-grid > div{
+  break-inside:avoid;
+  margin-bottom:1.25rem;
+  width:100%;
+}
+
+/* Portfolio card pill badges (platform/category labels): a solid dark
+   chip with its own shadow, rather than the transparent .glass effect,
+   so the text stays readable over bright/white product photos too. */
+.media-pill{
+  display:inline-block;
+  padding:0.3rem 0.7rem;
+  border-radius:9999px;
+  background:rgba(10,10,14,0.72);
+  color:#fff;
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.12em;
+  box-shadow:0 6px 16px -4px rgba(0,0,0,0.55);
+}
+
+/* Review card divider row: border above the avatar/name, with real
+   breathing room below it before the name/company text */
+.review-divider{
+  border-top:1px solid color-mix(in oklab, var(--border) 60%, transparent);
+  padding-top:1.35rem;
+  margin-top:1.5rem;
+}
+.review-divider-sm{
+  padding-top:1.1rem;
+  margin-top:1.25rem;
+}
+
 /* Branding project popup modal */
 .portfolio-modal{
   position:fixed;
@@ -127,11 +182,6 @@ select.input{
   border-radius:1.25rem;
   object-fit:contain;
   box-shadow:0 30px 80px -20px rgba(0,0,0,0.7);
-}
-@media (max-width:749px){
-  .portfolio-modal img{
-    border-radius: 0.6rem;
-  }
 }
 .portfolio-modal-close{
   position:fixed;
